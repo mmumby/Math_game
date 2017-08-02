@@ -11,10 +11,16 @@ module MathGame
       is_game_over?
     end
 
+    def whos_turn_is_it?
+      if @current_player == @player_1
+         @current_player = @player_2
+      else
+        @current_player = @player_1
+      end
+    end
+
     def new_turn
       puts "----- New Turn -----"
-      @current_player = @player_1 ? @player_2 : @player_1
-
       unless @question.math_question(@current_player.name)
         deduct_life(@current_player)
       end
@@ -29,6 +35,7 @@ module MathGame
     while @game_status
       if @player_1.life > 0 && @player_2.life > 0
         new_turn
+        whos_turn_is_it?
       elsif @player_1.life == 0 && @player_2.life == 0
         @game_status = "Game Over"
         puts "---- GAME OVER ----"
