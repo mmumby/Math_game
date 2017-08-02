@@ -2,6 +2,5 @@ require './players'
 require './questions'
 require './rounds'
 
-game = MathGame::Question.new
+MathGame::Game.new
 
-puts game.math_question
